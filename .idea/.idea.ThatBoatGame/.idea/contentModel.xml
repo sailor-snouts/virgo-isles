@@ -49,7 +49,12 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AudioManager.cs" t="Include" />
+          <e p="Controls.cs" t="Include" />
           <e p="EventManager.cs" t="Include" />
+          <e p="FreeLookAddOn.cs" t="Include" />
+          <e p="PauseMenu.cs" t="Include" />
+          <e p="PlayerController.cs" t="Include" />
           <e p="SettingsMenu.cs" t="Include" />
           <e p="StartMenu.cs" t="Include" />
         </e>
