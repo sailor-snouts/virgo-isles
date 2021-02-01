@@ -26,7 +26,7 @@ public class SettingsMenu : MonoBehaviour
 
     private void LoadResolutionValue()
     {
-        int currentIndex = 0;
+        int currentIndex = PlayerPrefs.GetInt("Resolution", 0);
         List<string> options = new List<string>();
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
@@ -44,6 +44,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetResolution(int index)
     {
         Screen.SetResolution(this.resolutions[index].width, this.resolutions[index].height, Screen.fullScreen);
+        PlayerPrefs.SetInt("Resolution", index);
     }
 
     private void LoadVolume()
@@ -56,6 +57,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         this.mixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20f);
+        PlayerPrefs.SetFloat("MasterVolume", Mathf.Log10(volume) * 20f);
     }
 
     public void LoadQuality()
@@ -69,6 +71,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetQuality(int level)
     {
         QualitySettings.SetQualityLevel(level);
+        PlayerPrefs.SetInt("Quality", level);
     }
 
     public void LoadFullscreen()
@@ -79,6 +82,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+        PlayerPrefs.SetInt("FullScreen", isFullscreen ? 1 : 0);
     }
 
     public void LoadPreviousScene()

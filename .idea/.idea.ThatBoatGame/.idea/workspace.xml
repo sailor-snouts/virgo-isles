@@ -17,6 +17,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.2/InputSystem/Plugins/PlayerInput/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HUDMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LoadSaveData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FreeLookAddOn.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -25,11 +26,14 @@
         <option value="$PROJECT_DIR$/Assets/Packages/GameJamStarter/SceneManagement/LoadScene.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FreeLookAddOn.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PauseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PositionWithPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HUDMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Bullet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Island.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SaveLoad.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SettingsMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LoadSaveData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PauseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
       </list>
     </option>
@@ -87,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611981795822</updated>
-      <workItem from="1611981810453" duration="32496000" />
+      <workItem from="1611981810453" duration="37078000" />
     </task>
     <servers />
   </component>

@@ -29,6 +29,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
+        FindObjectOfType<PlayerController>().Save();
         LoadScene.Instance.Load(this.TitleScene);
     }
 }

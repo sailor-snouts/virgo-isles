@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -16,7 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boatRotationSpeed = 1f;
     [SerializeField] private float sailsRotationSpeed = 10f;
     [SerializeField] private float maxVelocity = 10f;
-    private float maxVelocitySquared = 100f;
     private Vector3 wind = Vector3.zero;
     private float timeToWindChange = 0;
     private Rigidbody rb = null;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private float maxFlood = 100f;
     [SerializeField] private Image fuelFill = null;
     private bool isTurbo = false;
-    private float turboBoostSpeed = 5f;
+    [SerializeField] private float turboBoostSpeed = 3f;
     private float fuel = 100f;
     private float maxFuel = 100f;
     private float fuelUsageRate = 1f;
@@ -43,12 +43,12 @@ public class PlayerController : MonoBehaviour
     {
         this.rb = this.GetComponent<Rigidbody>();
         this.audio = this.GetComponent<AudioSource>();
-        this.maxVelocitySquared = this.maxVelocity * this.maxVelocity;
     }
 
     private void Start()
     {
         this.islands = FindObjectsOfType<Island>();
+        this.Load();
     }
 
     public void RotateSailsClockwise(InputAction.CallbackContext context)
@@ -124,11 +124,13 @@ public class PlayerController : MonoBehaviour
 
         float speed = Vector3.Dot(this.sails.transform.forward.normalized, this.wind.normalized) * this.maxVelocity;// 0 if perpendicular, 1 if same, -1 if opposite
         // only 25% force if sail is facing wrong direction
-        if (speed >= 0) speed *= -0.1f;
+        if (speed >= 0) speed *= 0.1f;
         // water penalty
         speed *= (1f - (this.maxFlood / this.flood)) * 0.5f;
         // turbo boost
         if (speed > 0 && this.isTurbo && this.fuel > 0) speed *= this.turboBoostSpeed;
+        float maxSpeed = this.isTurbo ? this.maxVelocity * this.turboBoostSpeed : this.maxVelocity;
+        speed = Mathf.Clamp(speed, -1 * maxSpeed, maxSpeed);
 
         this.rb.velocity = this.sails.transform.forward * speed;
     }
@@ -167,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
     private void RotateFlag()
     {
-        this.flag.transform.LookAt(this.flag.transform.position - this.wind);
+        this.flag.transform.LookAt(this.wind - this.flag.transform.position);
     }
 
     private void UpdateFill()
@@ -189,5 +191,34 @@ public class PlayerController : MonoBehaviour
             if (!island.HasGrown()) return;
         }
         LoadScene.Instance.Load("Win");
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetFloat("PlayerPositionX", this.transform.position.x);
+        PlayerPrefs.SetFloat("PlayerPositionY", this.transform.position.y);
+        PlayerPrefs.SetFloat("PlayerPositionZ", this.transform.position.z);
+        PlayerPrefs.SetFloat("PlayerWater", this.flood);
+        PlayerPrefs.SetFloat("PlayerFuel", this.fuel);
+
+        foreach (Island island in this.islands)
+        {
+            PlayerPrefs.SetInt("Island"+island.name+"HasGrown", island.HasGrown() ? 1 : 0);
+        }
+    }
+
+    public void Load()
+    {
+        if (!PlayerPrefs.HasKey("PlayerPositionX")) return;
+        this.transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPositionX", 9200f), PlayerPrefs.GetFloat("PlayerPositionY", 2.5f), PlayerPrefs.GetFloat("PlayerPositionZ", 2800f));
+        this.rb.velocity = Vector3.zero;
+        this.fuel = PlayerPrefs.GetFloat("PlayerFuel", 100f);
+        this.flood = PlayerPrefs.GetFloat("PlayerWater", 25f);
+        
+        foreach (Island island in this.islands)
+        {
+            int islandGrown = PlayerPrefs.GetInt("Island"+island.name+"HasGrown", 0);
+            if(islandGrown == 1) island.Grow();
+        }
     }
 }

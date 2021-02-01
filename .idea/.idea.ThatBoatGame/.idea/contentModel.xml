@@ -56,6 +56,7 @@
           <e p="FreeLookAddOn.cs" t="Include" />
           <e p="HUDMenu.cs" t="Include" />
           <e p="Island.cs" t="Include" />
+          <e p="LoadSaveData.cs" t="Include" />
           <e p="PauseMenu.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="PositionWithPlayer.cs" t="Include" />
