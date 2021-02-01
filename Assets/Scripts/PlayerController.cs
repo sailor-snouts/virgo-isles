@@ -33,11 +33,22 @@ public class PlayerController : MonoBehaviour
     private float maxFuel = 100f;
     private float fuelUsageRate = 1f;
     private float fuelRegainRate = 0.1f;
+    [SerializeField] private GameObject seed = null;
+    [SerializeField] private Transform cannon = null;
+    [SerializeField] private AudioClip cannonSFX = null;
+    private AudioSource audio = null;
+    private Island[] islands;
 
     private void Awake()
     {
         this.rb = this.GetComponent<Rigidbody>();
+        this.audio = this.GetComponent<AudioSource>();
         this.maxVelocitySquared = this.maxVelocity * this.maxVelocity;
+    }
+
+    private void Start()
+    {
+        this.islands = FindObjectsOfType<Island>();
     }
 
     public void RotateSailsClockwise(InputAction.CallbackContext context)
@@ -50,24 +61,48 @@ public class PlayerController : MonoBehaviour
         this.sailsDirection = context.ReadValueAsButton() ? Direction.COUNTER_CLOCKWISE : Direction.NONE; 
     }
 
+    public void ToggleAnchor()
+    {
+        this.isAnchored = !this.isAnchored;
+    }
+    
     public void ToggleAnchor(InputAction.CallbackContext context)
     {
-        if (context.started) this.isAnchored = !this.isAnchored;
+        if (context.started) this.ToggleAnchor();
     }
 
+    public void ToggleBoost()
+    {
+        this.isTurbo = !this.isTurbo;
+    }
+    
     public void ToggleBoost(InputAction.CallbackContext context)
     {
-        if (context.performed) this.isTurbo = !this.isTurbo;
+        if (context.performed) this.ToggleBoost();
     }
 
+    public void UseBucket()
+    {
+        this.flood = Mathf.Clamp(this.flood - this.floodEmptyRate, 0, this.maxFlood);
+    }
+    
     public void UseBucket(InputAction.CallbackContext context)
     {
-        if (context.started) this.flood = Mathf.Clamp(this.flood - this.floodEmptyRate, 0, this.maxFlood);
+        if (context.started) this.UseBucket();
     }
 
+    public void FireCannon()
+    {
+        GameObject seed = GameObject.Instantiate(this.seed);
+        seed.transform.position = this.cannon.transform.position;
+        seed.transform.rotation = this.cannon.transform.rotation;
+        seed.SetActive(true);
+        this.audio.PlayOneShot(this.cannonSFX);
+    }
+    
     public void FireCannon(InputAction.CallbackContext context)
     {
-        
+        if (context.started) this.FireCannon();
     }
     
     void Update()
@@ -137,6 +172,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateFill()
     {
+        // normally id use an event but since the values constantly change this is not as bad
         this.flood = Mathf.Clamp(this.flood + this.floodRate * Time.deltaTime, 0, this.maxFlood);
         if(this.isTurbo)
             this.fuel = Mathf.Clamp(this.fuel - this.fuelUsageRate * Time.deltaTime, 0, this.maxFuel);
@@ -144,5 +180,14 @@ public class PlayerController : MonoBehaviour
             this.fuel = Mathf.Clamp(this.fuel + this.fuelRegainRate * Time.deltaTime, 0, this.maxFuel);
         this.fuelFill.fillAmount = Mathf.Clamp01(this.fuel / this.maxFuel);
         this.floodFill.fillAmount = Mathf.Clamp01(this.flood / this.maxFlood);
+    }
+
+    public void ProgressCheck()
+    {
+        foreach (Island island in this.islands)
+        {
+            if (!island.HasGrown()) return;
+        }
+        LoadScene.Instance.Load("Win");
     }
 }

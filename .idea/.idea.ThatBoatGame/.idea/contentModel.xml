@@ -50,10 +50,12 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AudioManager.cs" t="Include" />
+          <e p="Bullet.cs" t="Include" />
           <e p="Controls.cs" t="Include" />
           <e p="EventManager.cs" t="Include" />
           <e p="FreeLookAddOn.cs" t="Include" />
           <e p="HUDMenu.cs" t="Include" />
+          <e p="Island.cs" t="Include" />
           <e p="PauseMenu.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="PositionWithPlayer.cs" t="Include" />
