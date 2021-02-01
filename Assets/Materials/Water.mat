@@ -30,11 +30,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_261A9100: 0.1
-    - Vector1_3E6C3E61: 5
+    - Vector1_3E6C3E61: 4
     - Vector1_484DC6D0: 1
-    - Vector1_6B64A0A9: 80
+    - Vector1_6B64A0A9: 500
     - Vector1_A9B3E732: 1
-    - Vector1_DD82B728: 10
+    - Vector1_DD82B728: 20
     - Vector1_F28B2F16: 0
     m_Colors:
     - Color_87FB4DE2: {r: 0.09411765, g: 0, b: 0.5019608, a: 1}

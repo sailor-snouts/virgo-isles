@@ -12,6 +12,9 @@ public class HUDMenu : MonoBehaviour
 
     private void Update()
     {
+        Vector3 position = new Vector3(this.player.position.x * -0.1f, 900f - this.player.position.z * 0.1f, this.minimap.transform.position.z);
+        this.minimap.rectTransform.anchoredPosition = position;
+        
         Vector3 rotation = player.eulerAngles;
         rotation.x = 0;
         rotation.z = 360 - rotation.y;

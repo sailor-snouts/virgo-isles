@@ -51,18 +51,34 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""PlayerCounterClockwise"",
-                    ""type"": ""Value"",
-                    ""id"": ""891bace6-aee0-4e68-b2f6-9f79bb6ddc36"",
-                    ""expectedControlType"": ""Axis"",
+                    ""name"": ""Turbo"",
+                    ""type"": ""Button"",
+                    ""id"": ""642d5d13-605a-475f-8a62-1926a42afdae"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""PlayerClockwise"",
-                    ""type"": ""Value"",
-                    ""id"": ""53ef2a52-c41a-4abd-9396-19df1026104b"",
-                    ""expectedControlType"": ""Axis"",
+                    ""name"": ""Anchor"",
+                    ""type"": ""Button"",
+                    ""id"": ""c286bae4-838a-47d3-89e7-9343f219142d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Bucket"",
+                    ""type"": ""Button"",
+                    ""id"": ""55621fa7-f25d-4e04-b0ce-1152cb547120"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cannon"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a6a36e3-4140-4b96-be12-f98d0c791732"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -93,7 +109,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cc704a43-f503-4e66-a9e5-de6d42370d6a"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -104,7 +120,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dc90d17d-4571-4fde-b189-47f469f907fe"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -114,23 +130,45 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""aaab645c-1329-46ed-8f32-1b2db5f5fb6d"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""id"": ""7a5bb071-202b-4acd-a097-ad64e1b8d5b7"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PlayerCounterClockwise"",
+                    ""action"": ""Turbo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""53dbf559-2e0f-4fb0-9644-11580194cdba"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""id"": ""cec14d9b-57b0-4ac9-a071-8a114bf6bce2"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PlayerClockwise"",
+                    ""action"": ""Anchor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45077adc-d931-4daa-93e5-bff043cae0ff"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Bucket"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d5ffea6-d05d-45bd-903d-7a383c9e9302"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cannon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -145,8 +183,10 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
         m_Game_SailsCounterClockwise = m_Game.FindAction("SailsCounterClockwise", throwIfNotFound: true);
         m_Game_SailsClockwise = m_Game.FindAction("SailsClockwise", throwIfNotFound: true);
-        m_Game_PlayerCounterClockwise = m_Game.FindAction("PlayerCounterClockwise", throwIfNotFound: true);
-        m_Game_PlayerClockwise = m_Game.FindAction("PlayerClockwise", throwIfNotFound: true);
+        m_Game_Turbo = m_Game.FindAction("Turbo", throwIfNotFound: true);
+        m_Game_Anchor = m_Game.FindAction("Anchor", throwIfNotFound: true);
+        m_Game_Bucket = m_Game.FindAction("Bucket", throwIfNotFound: true);
+        m_Game_Cannon = m_Game.FindAction("Cannon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -200,8 +240,10 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Pause;
     private readonly InputAction m_Game_SailsCounterClockwise;
     private readonly InputAction m_Game_SailsClockwise;
-    private readonly InputAction m_Game_PlayerCounterClockwise;
-    private readonly InputAction m_Game_PlayerClockwise;
+    private readonly InputAction m_Game_Turbo;
+    private readonly InputAction m_Game_Anchor;
+    private readonly InputAction m_Game_Bucket;
+    private readonly InputAction m_Game_Cannon;
     public struct GameActions
     {
         private @Controls m_Wrapper;
@@ -210,8 +252,10 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Pause => m_Wrapper.m_Game_Pause;
         public InputAction @SailsCounterClockwise => m_Wrapper.m_Game_SailsCounterClockwise;
         public InputAction @SailsClockwise => m_Wrapper.m_Game_SailsClockwise;
-        public InputAction @PlayerCounterClockwise => m_Wrapper.m_Game_PlayerCounterClockwise;
-        public InputAction @PlayerClockwise => m_Wrapper.m_Game_PlayerClockwise;
+        public InputAction @Turbo => m_Wrapper.m_Game_Turbo;
+        public InputAction @Anchor => m_Wrapper.m_Game_Anchor;
+        public InputAction @Bucket => m_Wrapper.m_Game_Bucket;
+        public InputAction @Cannon => m_Wrapper.m_Game_Cannon;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,12 +277,18 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SailsClockwise.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSailsClockwise;
                 @SailsClockwise.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSailsClockwise;
                 @SailsClockwise.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSailsClockwise;
-                @PlayerCounterClockwise.started -= m_Wrapper.m_GameActionsCallbackInterface.OnPlayerCounterClockwise;
-                @PlayerCounterClockwise.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnPlayerCounterClockwise;
-                @PlayerCounterClockwise.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnPlayerCounterClockwise;
-                @PlayerClockwise.started -= m_Wrapper.m_GameActionsCallbackInterface.OnPlayerClockwise;
-                @PlayerClockwise.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnPlayerClockwise;
-                @PlayerClockwise.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnPlayerClockwise;
+                @Turbo.started -= m_Wrapper.m_GameActionsCallbackInterface.OnTurbo;
+                @Turbo.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnTurbo;
+                @Turbo.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnTurbo;
+                @Anchor.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAnchor;
+                @Anchor.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAnchor;
+                @Anchor.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAnchor;
+                @Bucket.started -= m_Wrapper.m_GameActionsCallbackInterface.OnBucket;
+                @Bucket.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnBucket;
+                @Bucket.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnBucket;
+                @Cannon.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCannon;
+                @Cannon.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCannon;
+                @Cannon.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCannon;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -255,12 +305,18 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SailsClockwise.started += instance.OnSailsClockwise;
                 @SailsClockwise.performed += instance.OnSailsClockwise;
                 @SailsClockwise.canceled += instance.OnSailsClockwise;
-                @PlayerCounterClockwise.started += instance.OnPlayerCounterClockwise;
-                @PlayerCounterClockwise.performed += instance.OnPlayerCounterClockwise;
-                @PlayerCounterClockwise.canceled += instance.OnPlayerCounterClockwise;
-                @PlayerClockwise.started += instance.OnPlayerClockwise;
-                @PlayerClockwise.performed += instance.OnPlayerClockwise;
-                @PlayerClockwise.canceled += instance.OnPlayerClockwise;
+                @Turbo.started += instance.OnTurbo;
+                @Turbo.performed += instance.OnTurbo;
+                @Turbo.canceled += instance.OnTurbo;
+                @Anchor.started += instance.OnAnchor;
+                @Anchor.performed += instance.OnAnchor;
+                @Anchor.canceled += instance.OnAnchor;
+                @Bucket.started += instance.OnBucket;
+                @Bucket.performed += instance.OnBucket;
+                @Bucket.canceled += instance.OnBucket;
+                @Cannon.started += instance.OnCannon;
+                @Cannon.performed += instance.OnCannon;
+                @Cannon.canceled += instance.OnCannon;
             }
         }
     }
@@ -271,7 +327,9 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnSailsCounterClockwise(InputAction.CallbackContext context);
         void OnSailsClockwise(InputAction.CallbackContext context);
-        void OnPlayerCounterClockwise(InputAction.CallbackContext context);
-        void OnPlayerClockwise(InputAction.CallbackContext context);
+        void OnTurbo(InputAction.CallbackContext context);
+        void OnAnchor(InputAction.CallbackContext context);
+        void OnBucket(InputAction.CallbackContext context);
+        void OnCannon(InputAction.CallbackContext context);
     }
 }

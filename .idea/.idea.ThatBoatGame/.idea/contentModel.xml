@@ -56,6 +56,7 @@
           <e p="HUDMenu.cs" t="Include" />
           <e p="PauseMenu.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="PositionWithPlayer.cs" t="Include" />
           <e p="SettingsMenu.cs" t="Include" />
           <e p="StartMenu.cs" t="Include" />
         </e>
